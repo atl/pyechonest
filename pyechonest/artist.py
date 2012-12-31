@@ -978,7 +978,7 @@ def similar(names=None, ids=None, start=0, results=15, buckets=None, limit=False
     return [Artist(**util.fix(a_dict)) for a_dict in result['response']['artists']]
 
 def extract(text='', start=0, results=15, buckets=None, limit=False, max_familiarity=None, min_familiarity=None,
-                max_hotttnesss=None, min_hotttnesss=None):
+                max_hotttnesss=None, min_hotttnesss=None, sort=None):
     """Extract artist names from a block of text.
     
     Args:
@@ -1035,6 +1035,8 @@ def extract(text='', start=0, results=15, buckets=None, limit=False, max_familia
         kwargs['bucket'] = buckets
     if limit:
         kwargs['limit'] = 'true'
+    if sort:
+        kwargs['sort'] = sort
     
     result = util.callm("%s/%s" % ('artist', 'extract'), kwargs)
     
