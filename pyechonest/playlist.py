@@ -618,6 +618,10 @@ class Playlist(PlaylistProxy):
             return None
 
     songs = property(get_current_songs)
+    
+    @property
+    def song(self):
+        return self.songs[-1]
 
     def info(self):
         return self.get_attribute("info", session_id=self.session_id)
